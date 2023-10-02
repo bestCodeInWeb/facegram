@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/facegram/static/css/main.073c9b0a.css",
+    "main.js": "/facegram/static/js/main.c5cc66f5.js",
+    "static/js/787.1e3e5c62.chunk.js": "/facegram/static/js/787.1e3e5c62.chunk.js",
+    "static/media/logo.svg": "/facegram/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/facegram/index.html",
+    "main.073c9b0a.css.map": "/facegram/static/css/main.073c9b0a.css.map",
+    "main.c5cc66f5.js.map": "/facegram/static/js/main.c5cc66f5.js.map",
+    "787.1e3e5c62.chunk.js.map": "/facegram/static/js/787.1e3e5c62.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.c5cc66f5.js"
+  ]
+}
