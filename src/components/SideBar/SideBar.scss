@@ -1,0 +1,47 @@
+@import '../../mixins.scss';
+
+.sidebar {
+  display: none;
+  width: 200px;
+
+  @include onTablet {
+    display: block;
+  }
+
+  @include onDesktop {
+    display: block;
+  }
+}
+
+.nav_list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.nav_item {
+  height: 100%;
+  display: inline-block;
+  transition: all .3s;
+}
+
+.nav_item:hover {
+  background-color: var(--light-color);
+}
+
+.nav_link {
+  display: block;
+  padding-inline: 10px;
+  font-size: 2rem;
+  color: var(--dark-color);
+  line-height: 60px;
+  text-decoration: none;
+}
+
+.active {
+  color: var(--primary-color);
+  font-weight: bold;
+  background-color: var(--light-color);
+  border-right: 3px solid var(--primary-color);
+}
