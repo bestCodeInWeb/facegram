@@ -1,5 +1,22 @@
+@import '../../mixins.scss';
+
 .people {
   display: block;
   width: 100%;
   min-height: 100vh;
+}
+
+.pagination-container {
+  position: fixed;
+  bottom: 70px;
+  right: 24px;
+  z-index: 100;
+
+  @include onTablet {
+    bottom: 35px;
+  }
+
+  @include onDesktop {
+    bottom: 35px;
+  }
 }

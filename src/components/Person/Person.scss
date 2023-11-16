@@ -1,0 +1,43 @@
+.user_container {
+  display: flex;
+  margin: 10px auto;
+  padding: 24px;
+  width: 80%;
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: .3s;
+}
+
+.user_container:hover {
+  border: 1px solid var(--success-color);
+  box-sizing: border-box;
+}
+
+.users_photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.users_description {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user_info {
+  width: 100%;
+}
+
+.user_location {
+  text-align: right;
+  width: 100%;
+}
+
+.link_usename {
+  text-decoration: none;
+  color: var(--dark-color);
+}

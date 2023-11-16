@@ -1,0 +1,14 @@
+.login-form {
+  max-width: 500px;
+  padding: 24px;
+  margin: 0 auto;
+  background-color: var(--light-color);
+  border-radius: 5px;
+}
+
+.wrong_login {
+  color: var(--danger-color);
+  font-size: 12px;
+  font-weight: bold;
+  margin: 10px;
+}

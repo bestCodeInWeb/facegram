@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../redux/hooks';
 import './Footer.scss';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   `${isActive ? 'footer_link footer-active' : 'footer_link'}`;
 
 export const Footer = () => {
+  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const myId = useAppSelector(state => state.auth.userId);
+
   return (
     <footer className="footer">
       <ul className="footer_list">
@@ -23,35 +27,39 @@ export const Footer = () => {
           </NavLink>
         </li>
 
-        <li className="footer_item">
-          <NavLink
-            to="/profile/2"
-            className={getLinkClass}
-          >
-            <div className="icon-area">
-              <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEUAAAD8/vz///+pqqkwMTCztLO+wL7Mzsz5+/lfYF/v8e/2+PabnJuCg4L6/PpJSknn6eeIiYgfHx/X2ddaW1oNDQ2io6KQkZDJy8kmJyYWFhY3Nzc9PT1CQ0KVlpVOT05+f364ubjg4uBrbGssLCx1dnVViRvRAAAE+0lEQVR4nO2di3qqMAyAIchE0HnBed+8be//ikfk6EBBaZualOV/gv5fCr2lqecJgiAIgiAIgiAITNh89t9uCTfD4Qd1w1CYHMMUahilYY+6fabMu8nJxK8hs4xnc+pG6jNYPLArWPrzCXVTtRiMnutdLd8+qZurzDhu7Jc7LqhbrMZ6oeR3dvTH1K1WYJ6o+p0d0w11wxsymen4ZYpRh7rtjfiINQWznjqjbn0DDAQzRwcUjQQdUJwYCvJXDEwFT4pLaolH6P5FS4Y+Y8VPBMGT4p7ao553DMGT4he1SB1vKCHMFIfUKtXg9NGzYZfapRq0EJ4Ut9QyVXTwBH2eaynEEPL8Er8xBVl+iagh5BjEDa4gw+npHNnQB2qjW0bohgNqpTJbbEEfUmqnMn10Qz/htWnTxTcEVkcaS6RVRcmQ1YeIOWO7GrIa9JetN0QfDX1us+/QgqHPar/GiiFwGi7EUAzFkB4xFEMxpEcMxVAM6RFDMRRDesRQDP+o4Xvbd6Lav5vIa0dYDMVQDOlp/9lT+88PxVAMxZAeMdQyfKO2KmLFcEptVWRlfBmowpBVTpS3aL1h6/Pa/oAhxpWuG5I1tVSJKX4G7YHaqUwP33BE7XQDfp43t3IZB3TDHbXSDbvW30bA/hAZXiTFNjxSC92BnCbMrpN6yEHktXT6D+rEjdmULWeIeYeU2ZWgHLOSHzeGfWqbSsZ4hgm1SzXtv62OWHGAa+WvHyRDtiE0rr5zNeRb9QsniBBTe9TzgWPIN4QoJYZYh9DzvhHukrKckv6CcKAPvCvvmR/oMw+h5+2Nq5lxymarxNCQfQg9LzWsucc+hN7KyNCBEBr+Tpn/SHM6BmOiEyE0CiLwOm+qY6JfoTWgbntDdLczeM9IS2geRLFeVJQ5ahnySl1/gtaODc9SgjXo1DbjV7/sIQNlRZ7b3A9QP8VwqY9mrBULzzszFP6iln/C8Mj3OUol3JgVZ2uIwrgP39SN1aOxolNjfZHGezZsT2IeMNkGC5VeOloEW3ee0+nsxocYGjwTVFTM3kU6jH+o296E/sFXtCtaJocv1iP/Joz05EqaUch0s6a3b/7A0zPL0Z5dtskqe78KMRfjJBlyeneuF2LqXSVTJjcuVv0UXe8i6fdX1Hretp9Y8ssl4y7tv3XYtamXO0KXrjz7OLLulztGNJtwcwt3nWol49fntc/VXv8zVny144v6Z9nxhX11rPX4H4Jk8hrHV35/d47xzrrf1Orw91wRLI+PLxj/GjjaGx8Z+GXYc+yz8MsAK3ngs4iLXwZE2Oc4X2zidwFQb7P3DNOA7AAp1kZAz9b6zxTAcZxy9ctA2AfYcvbLAFiYbAMsA1Y/0GrgPdDN9pumRDNsVSDR66sB8/5ZBNSzAJYu+WUAKPXViQvf3y0QBY1Pr8aOxe8CNEwbO6KXR3gdMGpwBXzvaABz4GlSx5BwiwIHiB8uHt0OYM6jMK5ZLiHUgagmO6fnyBTmOZBUrjn4bFKYU7nNYeGdTUruFVsmeK/YOsFbxSV1c2xQrB6ycnCi/RwoVHwzvhbJk99FI2LJDl5c1xrUDbFILvjV1hBeUnMxawOx45yba+MtXzacr2w6vyJ8CKzb+yPNgRClWAdjIBBD1xFD9xFD9xFD9xFD9xFD9xFD9xFD9xFD9xFD9/kThtkV3jYTVqdlCIIgCIIgCIIgCGX+AQLXdRAYR9x5AAAAAElFTkSuQmCC"
-                alt="profile"
-                className="icon"
-              />
-            </div>
-          </NavLink>
-        </li>
+        {isAuth && (
+          <li className="footer_item">
+            <NavLink
+              to={"/profile/" + myId}
+              className={getLinkClass}
+            >
+              <div className="icon-area">
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEUAAAD8/vz///+pqqkwMTCztLO+wL7Mzsz5+/lfYF/v8e/2+PabnJuCg4L6/PpJSknn6eeIiYgfHx/X2ddaW1oNDQ2io6KQkZDJy8kmJyYWFhY3Nzc9PT1CQ0KVlpVOT05+f364ubjg4uBrbGssLCx1dnVViRvRAAAE+0lEQVR4nO2di3qqMAyAIchE0HnBed+8be//ikfk6EBBaZualOV/gv5fCr2lqecJgiAIgiAIgiAITNh89t9uCTfD4Qd1w1CYHMMUahilYY+6fabMu8nJxK8hs4xnc+pG6jNYPLArWPrzCXVTtRiMnutdLd8+qZurzDhu7Jc7LqhbrMZ6oeR3dvTH1K1WYJ6o+p0d0w11wxsymen4ZYpRh7rtjfiINQWznjqjbn0DDAQzRwcUjQQdUJwYCvJXDEwFT4pLaolH6P5FS4Y+Y8VPBMGT4p7ao553DMGT4he1SB1vKCHMFIfUKtXg9NGzYZfapRq0EJ4Ut9QyVXTwBH2eaynEEPL8Er8xBVl+iagh5BjEDa4gw+npHNnQB2qjW0bohgNqpTJbbEEfUmqnMn10Qz/htWnTxTcEVkcaS6RVRcmQ1YeIOWO7GrIa9JetN0QfDX1us+/QgqHPar/GiiFwGi7EUAzFkB4xFEMxpEcMxVAM6RFDMRRDesRQDP+o4Xvbd6Lav5vIa0dYDMVQDOlp/9lT+88PxVAMxZAeMdQyfKO2KmLFcEptVWRlfBmowpBVTpS3aL1h6/Pa/oAhxpWuG5I1tVSJKX4G7YHaqUwP33BE7XQDfp43t3IZB3TDHbXSDbvW30bA/hAZXiTFNjxSC92BnCbMrpN6yEHktXT6D+rEjdmULWeIeYeU2ZWgHLOSHzeGfWqbSsZ4hgm1SzXtv62OWHGAa+WvHyRDtiE0rr5zNeRb9QsniBBTe9TzgWPIN4QoJYZYh9DzvhHukrKckv6CcKAPvCvvmR/oMw+h5+2Nq5lxymarxNCQfQg9LzWsucc+hN7KyNCBEBr+Tpn/SHM6BmOiEyE0CiLwOm+qY6JfoTWgbntDdLczeM9IS2geRLFeVJQ5ahnySl1/gtaODc9SgjXo1DbjV7/sIQNlRZ7b3A9QP8VwqY9mrBULzzszFP6iln/C8Mj3OUol3JgVZ2uIwrgP39SN1aOxolNjfZHGezZsT2IeMNkGC5VeOloEW3ee0+nsxocYGjwTVFTM3kU6jH+o296E/sFXtCtaJocv1iP/Joz05EqaUch0s6a3b/7A0zPL0Z5dtskqe78KMRfjJBlyeneuF2LqXSVTJjcuVv0UXe8i6fdX1Hretp9Y8ssl4y7tv3XYtamXO0KXrjz7OLLulztGNJtwcwt3nWol49fntc/VXv8zVny144v6Z9nxhX11rPX4H4Jk8hrHV35/d47xzrrf1Orw91wRLI+PLxj/GjjaGx8Z+GXYc+yz8MsAK3ngs4iLXwZE2Oc4X2zidwFQb7P3DNOA7AAp1kZAz9b6zxTAcZxy9ctA2AfYcvbLAFiYbAMsA1Y/0GrgPdDN9pumRDNsVSDR66sB8/5ZBNSzAJYu+WUAKPXViQvf3y0QBY1Pr8aOxe8CNEwbO6KXR3gdMGpwBXzvaABz4GlSx5BwiwIHiB8uHt0OYM6jMK5ZLiHUgagmO6fnyBTmOZBUrjn4bFKYU7nNYeGdTUruFVsmeK/YOsFbxSV1c2xQrB6ycnCi/RwoVHwzvhbJk99FI2LJDl5c1xrUDbFILvjV1hBeUnMxawOx45yba+MtXzacr2w6vyJ8CKzb+yPNgRClWAdjIBBD1xFD9xFD9xFD9xFD9xFD9xFD9xFD9xFD9xFD9/kThtkV3jYTVqdlCIIgCIIgCIIgCGX+AQLXdRAYR9x5AAAAAElFTkSuQmCC"
+                  alt="profile"
+                  className="icon"
+                />
+              </div>
+            </NavLink>
+          </li>
+        )}
 
-        <li className="footer_item">
-          <NavLink
-            to="/messages"
-            className={getLinkClass}
-          >
-            <div className="icon-area">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7TWUyFGiDsHEkj3E8e4FUz5sa3kCr6OnoJw&usqp=CAU"
-                alt="messages"
-                className="icon"
-              />
-            </div>
-          </NavLink>
-        </li>
+        {isAuth && (
+          <li className="footer_item">
+            <NavLink
+              to="/messages"
+              className={getLinkClass}
+            >
+              <div className="icon-area">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7TWUyFGiDsHEkj3E8e4FUz5sa3kCr6OnoJw&usqp=CAU"
+                  alt="messages"
+                  className="icon"
+                />
+              </div>
+            </NavLink>
+          </li>
+        )}
 
         <li className="footer_item">
           <NavLink
